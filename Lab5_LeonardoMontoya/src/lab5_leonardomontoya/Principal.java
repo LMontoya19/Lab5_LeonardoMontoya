@@ -8,6 +8,7 @@ package lab5_leonardomontoya;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
@@ -63,12 +64,21 @@ public class Principal extends javax.swing.JFrame {
         jtf_region = new javax.swing.JTextField();
         btn_nuevacriatura = new javax.swing.JButton();
         js_energia = new javax.swing.JSpinner();
+        js_pesocaricatura = new javax.swing.JSpinner();
+        jLabel14 = new javax.swing.JLabel();
+        jpm_mundos = new javax.swing.JPopupMenu();
+        jm_agregar = new javax.swing.JMenuItem();
+        jm_eliminar = new javax.swing.JMenuItem();
+        Modificar = new javax.swing.JMenu();
+        jmu_nombremundo = new javax.swing.JMenuItem();
+        jmu_pesomundo = new javax.swing.JMenuItem();
         jToolBar1 = new javax.swing.JToolBar();
         Cuniverso = new javax.swing.JButton();
         btn_mundo = new javax.swing.JButton();
         btn_criatura = new javax.swing.JButton();
         btn_mundotree = new javax.swing.JButton();
         btn_criaturatotree = new javax.swing.JButton();
+        btn_pesouniverso = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jt_universo = new javax.swing.JTree();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -217,6 +227,10 @@ public class Principal extends javax.swing.JFrame {
 
         js_energia.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
+        js_pesocaricatura.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+
+        jLabel14.setText("Peso");
+
         javax.swing.GroupLayout jd_criaturasLayout = new javax.swing.GroupLayout(jd_criaturas.getContentPane());
         jd_criaturas.getContentPane().setLayout(jd_criaturasLayout);
         jd_criaturasLayout.setHorizontalGroup(
@@ -239,7 +253,10 @@ public class Principal extends javax.swing.JFrame {
                         .addGroup(jd_criaturasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
                             .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jd_criaturasLayout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(jLabel14)))
                 .addGap(18, 18, 18)
                 .addGroup(jd_criaturasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jtf_raza, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -249,7 +266,8 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jtf_region, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING))
                     .addComponent(btn_nuevacriatura, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(js_energia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(js_energia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(js_pesocaricatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(163, Short.MAX_VALUE))
         );
         jd_criaturasLayout.setVerticalGroup(
@@ -283,9 +301,49 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jLabel13)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(jd_criaturasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(js_pesocaricatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addComponent(btn_nuevacriatura)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addGap(22, 22, 22))
         );
+
+        jm_agregar.setText("Agregar");
+        jm_agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jm_agregarActionPerformed(evt);
+            }
+        });
+        jpm_mundos.add(jm_agregar);
+
+        jm_eliminar.setText("Eliminar");
+        jm_eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jm_eliminarActionPerformed(evt);
+            }
+        });
+        jpm_mundos.add(jm_eliminar);
+
+        Modificar.setText("modificar");
+
+        jmu_nombremundo.setText("Nombre");
+        jmu_nombremundo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmu_nombremundoActionPerformed(evt);
+            }
+        });
+        Modificar.add(jmu_nombremundo);
+
+        jmu_pesomundo.setText("Peso");
+        jmu_pesomundo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmu_pesomundoActionPerformed(evt);
+            }
+        });
+        Modificar.add(jmu_pesomundo);
+
+        jpm_mundos.add(Modificar);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -355,11 +413,25 @@ public class Principal extends javax.swing.JFrame {
         });
         jToolBar1.add(btn_criaturatotree);
 
+        btn_pesouniverso.setText("Informacion del Universo");
+        btn_pesouniverso.setEnabled(false);
+        btn_pesouniverso.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_pesouniversoMouseClicked(evt);
+            }
+        });
+        jToolBar1.add(btn_pesouniverso);
+
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Universo");
         jt_universo.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         jScrollPane1.setViewportView(jt_universo);
 
         jlist_mundos.setModel(new DefaultListModel());
+        jlist_mundos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlist_mundosMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jlist_mundos);
 
         jlist_criaturas.setModel(new DefaultListModel());
@@ -369,15 +441,15 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addContainerGap())
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -398,6 +470,8 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         u.setCodigo(jtf_codigo.getText());
         u.setEdad((Integer) jSpinner2.getValue());
+        u.setPeso(0);
+        btn_pesouniverso.setEnabled(true);
         btn_mundo.setEnabled(true);
         btn_criatura.setEnabled(true);
         btn_mundotree.setEnabled(true);
@@ -431,7 +505,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void btn_mundoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_mundoMouseClicked
         // TODO add your handling code here:
-        System.out.println(btn_gmundo.isEnabled());
+
         if (btn_mundo.isEnabled() == true) {
             jd_mundo.setModal(true);
             jd_mundo.pack();
@@ -459,7 +533,7 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         DefaultListModel modelo = (DefaultListModel) jlist_criaturas.getModel();
         String[] objetos = ta_objetos.getText().split("\n");
-        modelo.addElement(new criatura(jtf_raza.getText(), (Integer) js_energia.getValue(), (Integer) js_anioscriatura.getValue(), jtf_region.getText(), (Integer) js_vivos.getValue()));
+        modelo.addElement(new criatura(jtf_raza.getText(), (Integer) js_energia.getValue(), (Integer) js_anioscriatura.getValue(), jtf_region.getText(), (Integer) js_vivos.getValue(), (Integer) js_pesocaricatura.getValue()));
         jlist_criaturas.setModel(modelo);
         jtf_raza.setText("");
         jtf_region.setText("");
@@ -474,30 +548,84 @@ public class Principal extends javax.swing.JFrame {
             DefaultListModel modeloLISTA = (DefaultListModel) jlist_mundos.getModel();
             DefaultMutableTreeNode mundo = new DefaultMutableTreeNode((MundoDisco) modeloLISTA.get(jlist_mundos.getSelectedIndex()));
             raiz.add(mundo);
+            u.setPeso(u.getPeso() + ((MundoDisco) modeloLISTA.get(jlist_mundos.getSelectedIndex())).getPeso());
             modeloLISTA.remove(jlist_mundos.getSelectedIndex());
             jlist_mundos.setModel(modeloLISTA);
             m.reload();
+
         }
     }//GEN-LAST:event_btn_mundotreeMouseClicked
 
     private void btn_criaturatotreeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_criaturatotreeMouseClicked
         // TODO add your handling code here:
         if (btn_mundotree.isEnabled()) {
-            if(jt_universo.getSelectionCount()>0){
-            if (jlist_criaturas.getSelectedIndex() >= 0 && jt_universo.getSelectionPath().getLastPathComponent() instanceof MundoDisco) {
+            if (jt_universo.getSelectionCount() > 0) {
                 DefaultTreeModel m = (DefaultTreeModel) jt_universo.getModel();
-                DefaultMutableTreeNode n = (DefaultMutableTreeNode) jt_universo.getSelectionPath().getLastPathComponent();
                 DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) m.getRoot();
-                DefaultListModel modeloLISTA = (DefaultListModel) jlist_criaturas.getModel();
-                DefaultMutableTreeNode c = new DefaultMutableTreeNode((criatura) modeloLISTA.get(jlist_criaturas.getSelectedIndex()));
-                ((DefaultMutableTreeNode) raiz.getChildAt(jt_universo.getSelectionPath().getPathCount())).add(c);
-                n.add(c);
-                m.reload();
-                modeloLISTA.remove(jlist_criaturas.getSelectedIndex());
-                jlist_criaturas.setModel(modeloLISTA);
-            }}
+                DefaultMutableTreeNode n = (DefaultMutableTreeNode) jt_universo.getSelectionPath().getLastPathComponent();
+                if (jlist_criaturas.getSelectedIndex() >= 0 && n.getUserObject() instanceof MundoDisco) {
+                    DefaultListModel modeloLISTA = (DefaultListModel) jlist_criaturas.getModel();
+                    DefaultMutableTreeNode c = new DefaultMutableTreeNode((criatura) modeloLISTA.get(jlist_criaturas.getSelectedIndex()));
+                    u.setPeso(u.getPeso() + (((criatura) modeloLISTA.get(jlist_criaturas.getSelectedIndex())).getPeso()) * ((criatura) modeloLISTA.get(jlist_criaturas.getSelectedIndex())).getNumespecies());
+                    n.add(c);
+                    m.reload();
+                    modeloLISTA.remove(jlist_criaturas.getSelectedIndex());
+                    jlist_criaturas.setModel(modeloLISTA);
+                }
+            }
         }
     }//GEN-LAST:event_btn_criaturatotreeMouseClicked
+
+    private void jlist_mundosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlist_mundosMouseClicked
+        // TODO add your handling code here:
+        if (evt.isMetaDown()) {
+            jpm_mundos.show(evt.getComponent(), evt.getX(), evt.getY());
+        }
+    }//GEN-LAST:event_jlist_mundosMouseClicked
+
+    private void jm_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_agregarActionPerformed
+        // TODO add your handling code here:
+        if (btn_mundo.isEnabled() == true) {
+            jd_mundo.setModal(true);
+            jd_mundo.pack();
+            jd_mundo.setLocationRelativeTo(this);
+            jd_mundo.setVisible(true);
+        }
+    }//GEN-LAST:event_jm_agregarActionPerformed
+
+    private void jm_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_eliminarActionPerformed
+        // TODO add your handling code here:
+        if (jlist_mundos.getSelectedIndex() >= 0) {
+            DefaultListModel modelo = (DefaultListModel) jlist_mundos.getModel();
+            modelo.remove(jlist_mundos.getSelectedIndex());
+            jlist_mundos.setModel(modelo);
+        }
+    }//GEN-LAST:event_jm_eliminarActionPerformed
+
+    private void jmu_nombremundoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmu_nombremundoActionPerformed
+        // TODO add your handling code here:
+        if (jlist_mundos.getSelectedIndex() >= 0) {
+            DefaultListModel modelo = (DefaultListModel) jlist_mundos.getModel();
+            ((MundoDisco) modelo.get(jlist_mundos.getSelectedIndex())).setNombre(JOptionPane.showInputDialog(this, "Ingrese nuevo nombre"));
+            jlist_mundos.setModel(modelo);
+        }
+    }//GEN-LAST:event_jmu_nombremundoActionPerformed
+
+    private void jmu_pesomundoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmu_pesomundoActionPerformed
+        // TODO add your handling code here:
+        if (jlist_mundos.getSelectedIndex() >= 0) {
+            DefaultListModel modelo = (DefaultListModel) jlist_mundos.getModel();
+            ((MundoDisco) modelo.get(jlist_mundos.getSelectedIndex())).setPeso(Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese nuevo nombre")));
+            jlist_mundos.setModel(modelo);
+        }
+    }//GEN-LAST:event_jmu_pesomundoActionPerformed
+
+    private void btn_pesouniversoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pesouniversoMouseClicked
+        // TODO add your handling code here:
+        if (btn_pesouniverso.isEnabled()) {
+            JOptionPane.showMessageDialog(this, "Codigo:" + u.getCodigo() + "\n Edad: " + u.getEdad() + "\n Peso: " + u.getPeso());
+        }
+    }//GEN-LAST:event_btn_pesouniversoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -536,18 +664,21 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cuniverso;
+    private javax.swing.JMenu Modificar;
     private javax.swing.JButton btn_criatura;
     private javax.swing.JButton btn_criaturatotree;
     private javax.swing.JButton btn_gmundo;
     private javax.swing.JButton btn_mundo;
     private javax.swing.JButton btn_mundotree;
     private javax.swing.JButton btn_nuevacriatura;
+    private javax.swing.JButton btn_pesouniverso;
     private javax.swing.JButton btn_universo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -567,8 +698,14 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JDialog jdi_universo;
     private javax.swing.JList<String> jlist_criaturas;
     private javax.swing.JList<String> jlist_mundos;
+    private javax.swing.JMenuItem jm_agregar;
+    private javax.swing.JMenuItem jm_eliminar;
+    private javax.swing.JMenuItem jmu_nombremundo;
+    private javax.swing.JMenuItem jmu_pesomundo;
+    private javax.swing.JPopupMenu jpm_mundos;
     private javax.swing.JSpinner js_anioscriatura;
     private javax.swing.JSpinner js_energia;
+    private javax.swing.JSpinner js_pesocaricatura;
     private javax.swing.JSpinner js_pesomundo;
     private javax.swing.JSpinner js_vivos;
     private javax.swing.JTree jt_universo;

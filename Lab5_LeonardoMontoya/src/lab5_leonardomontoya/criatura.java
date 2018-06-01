@@ -18,20 +18,29 @@ public class criatura {
     private String region;
     private int numespecies;
     private ArrayList<String> objetos;
-
+    private int peso;
     public criatura() {
     }
 
-    public criatura(String raza, int energia, int maxanios, String region, int numespecies) {
+    public criatura(String raza, int energia, int maxanios, String region, int numespecies,int peso) {
         this.raza = raza;
         this.energia = energia;
         this.maxanios = maxanios;
         this.region = region;
         this.numespecies = numespecies;
+        this.peso = peso;
     }
 
     public String getRaza() {
         return raza;
+    }
+
+    public int getPeso() {
+        return peso;
+    }
+
+    public void setPeso(int peso) {
+        this.peso = peso;
     }
 
     public void setRaza(String raza) {
