@@ -72,6 +72,12 @@ public class Principal extends javax.swing.JFrame {
         Modificar = new javax.swing.JMenu();
         jmu_nombremundo = new javax.swing.JMenuItem();
         jmu_pesomundo = new javax.swing.JMenuItem();
+        jpm_criatura = new javax.swing.JPopupMenu();
+        jm_agrgarcriatura = new javax.swing.JMenuItem();
+        eliminar = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jm_nombrecriatura = new javax.swing.JMenuItem();
+        jm_region = new javax.swing.JMenuItem();
         jToolBar1 = new javax.swing.JToolBar();
         Cuniverso = new javax.swing.JButton();
         btn_mundo = new javax.swing.JButton();
@@ -85,6 +91,7 @@ public class Principal extends javax.swing.JFrame {
         jlist_mundos = new javax.swing.JList<>();
         jScrollPane3 = new javax.swing.JScrollPane();
         jlist_criaturas = new javax.swing.JList<>();
+        jLabel15 = new javax.swing.JLabel();
 
         jLabel1.setText("Codigo");
 
@@ -345,6 +352,42 @@ public class Principal extends javax.swing.JFrame {
 
         jpm_mundos.add(Modificar);
 
+        jm_agrgarcriatura.setText("Agregar");
+        jm_agrgarcriatura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jm_agrgarcriaturaActionPerformed(evt);
+            }
+        });
+        jpm_criatura.add(jm_agrgarcriatura);
+
+        eliminar.setText("Eliminar");
+        eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarActionPerformed(evt);
+            }
+        });
+        jpm_criatura.add(eliminar);
+
+        jMenu1.setText("Modificar");
+
+        jm_nombrecriatura.setText("Raza");
+        jm_nombrecriatura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jm_nombrecriaturaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jm_nombrecriatura);
+
+        jm_region.setText("Region");
+        jm_region.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jm_regionActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jm_region);
+
+        jpm_criatura.add(jMenu1);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jToolBar1.setRollover(true);
@@ -435,7 +478,15 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jlist_mundos);
 
         jlist_criaturas.setModel(new DefaultListModel());
+        jlist_criaturas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlist_criaturasMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(jlist_criaturas);
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        jLabel15.setText("Lab 5 :)");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -445,22 +496,28 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(131, 131, 131))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(101, 101, 101)
+                .addGap(30, 30, 30)
+                .addComponent(jLabel15)
+                .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
                     .addComponent(jScrollPane2)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addContainerGap(90, Short.MAX_VALUE))
         );
 
         pack();
@@ -615,7 +672,7 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (jlist_mundos.getSelectedIndex() >= 0) {
             DefaultListModel modelo = (DefaultListModel) jlist_mundos.getModel();
-            ((MundoDisco) modelo.get(jlist_mundos.getSelectedIndex())).setPeso(Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese nuevo nombre")));
+            ((MundoDisco) modelo.get(jlist_mundos.getSelectedIndex())).setPeso(Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese el peso")));
             jlist_mundos.setModel(modelo);
         }
     }//GEN-LAST:event_jmu_pesomundoActionPerformed
@@ -626,6 +683,49 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Codigo:" + u.getCodigo() + "\n Edad: " + u.getEdad() + "\n Peso: " + u.getPeso());
         }
     }//GEN-LAST:event_btn_pesouniversoMouseClicked
+
+    private void jlist_criaturasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlist_criaturasMouseClicked
+        // TODO add your handling code here:
+        if (evt.isMetaDown()) {
+            jpm_criatura.show(evt.getComponent(), evt.getX(), evt.getY());
+
+        }
+    }//GEN-LAST:event_jlist_criaturasMouseClicked
+
+    private void jm_agrgarcriaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_agrgarcriaturaActionPerformed
+        // TODO add your handling code here:
+        jd_mundo.setModal(true);
+        jd_criaturas.pack();
+        jd_criaturas.setLocationRelativeTo(this);
+        jd_criaturas.setVisible(true);
+    }//GEN-LAST:event_jm_agrgarcriaturaActionPerformed
+
+    private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
+        // TODO add your handling code here:
+        if (jlist_criaturas.getSelectedIndex() >= 0) {
+            DefaultListModel modelo = (DefaultListModel) jlist_criaturas.getModel();
+            modelo.remove(jlist_criaturas.getSelectedIndex());
+            jlist_criaturas.setModel(modelo);
+        }
+    }//GEN-LAST:event_eliminarActionPerformed
+
+    private void jm_nombrecriaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_nombrecriaturaActionPerformed
+        // TODO add your handling code here:
+        if (jlist_criaturas.getSelectedIndex() >= 0) {
+            DefaultListModel modelo = (DefaultListModel) jlist_criaturas.getModel();
+            ((criatura) modelo.get(jlist_criaturas.getSelectedIndex())).setRaza(JOptionPane.showInputDialog(this, "Ingrese el raza"));
+            jlist_criaturas.setModel(modelo);
+        }
+    }//GEN-LAST:event_jm_nombrecriaturaActionPerformed
+
+    private void jm_regionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_regionActionPerformed
+        // TODO add your handling code here:
+        if (jlist_criaturas.getSelectedIndex() >= 0) {
+            DefaultListModel modelo = (DefaultListModel) jlist_criaturas.getModel();
+            ((criatura) modelo.get(jlist_criaturas.getSelectedIndex())).setRegion(JOptionPane.showInputDialog(this, "Ingrese la Region"));
+            jlist_criaturas.setModel(modelo);
+        }
+    }//GEN-LAST:event_jm_regionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -673,12 +773,14 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btn_nuevacriatura;
     private javax.swing.JButton btn_pesouniverso;
     private javax.swing.JButton btn_universo;
+    private javax.swing.JMenuItem eliminar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -687,6 +789,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -699,9 +802,13 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JList<String> jlist_criaturas;
     private javax.swing.JList<String> jlist_mundos;
     private javax.swing.JMenuItem jm_agregar;
+    private javax.swing.JMenuItem jm_agrgarcriatura;
     private javax.swing.JMenuItem jm_eliminar;
+    private javax.swing.JMenuItem jm_nombrecriatura;
+    private javax.swing.JMenuItem jm_region;
     private javax.swing.JMenuItem jmu_nombremundo;
     private javax.swing.JMenuItem jmu_pesomundo;
+    private javax.swing.JPopupMenu jpm_criatura;
     private javax.swing.JPopupMenu jpm_mundos;
     private javax.swing.JSpinner js_anioscriatura;
     private javax.swing.JSpinner js_energia;
